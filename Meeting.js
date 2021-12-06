@@ -291,7 +291,7 @@ class Meeting extends Component {
             </form>
             <br />
             <form>
-              <label>Venue:</label>
+              <label>City:</label>
               <select onChange={this.handleVenueList}>
                 <option selected value="" disabled="disabled">
                   choose
@@ -325,7 +325,7 @@ class Meeting extends Component {
                       .map((a, i) => (
                         <option key={i}>
                           {" "}
-                          {a.place} €{a.price} / day MaxNo.OfGuests{" "}
+                          {a.place} | costs €{a.price} per day | MaxNo.OfGuests{" "}
                           {a.maxNumberOfGuests}
                         </option>
                       ))}
@@ -361,6 +361,10 @@ class Meeting extends Component {
 
           {this.state.organiser && (
             <div>
+              <br />
+              <br />
+              <br />
+              <br />
               <hr />
               Meeting Details:
               <br />
@@ -423,7 +427,9 @@ class Meeting extends Component {
             <ul>
               Added package
               {this.state.meetingBasket.map((m, i) => (
-                <li key={i}>{m.package}</li>
+                <li key={i}>
+                  {m.package} (with additional cost €{m.price} per person)
+                </li>
               ))}
             </ul>
           )}
