@@ -35,4 +35,10 @@ export const venueList = [
     capacity: 280,
     pricepp: 85
   }
+  {
+    id: 7,
+    venuename: "Radisson Blu St Corka, Cork",
+    capacity: 500,
+    pricepp: 50
+  }
 ];
