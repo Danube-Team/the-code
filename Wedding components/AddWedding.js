@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { venueList } from "./venueList.js";
+//import { venueList } fom "./venueList.js";
 import validator from "validator";
 import weddingPhoto from "./wedding.png";
 
-
-const localVenueList = venueList;
+//const localVenueList = venueList;
 
 function isNumeric(num) {
   return !isNaN(num);
@@ -17,7 +16,9 @@ class AddWedding extends Component {
       id: 0,
       eventDate: new Date(),
       numOfGuests: 0,
-      venueList: localVenueList,
+      localVenueList: [],
+      isFetched: false,
+      errorMsg: null,
       venue: "",
       contact: "",
       phone: "",
@@ -38,14 +39,16 @@ class AddWedding extends Component {
         email: ""
       },
 
-      weddingArray: [{
-        eventDate: "",
-        numOfGuests: "",
-        venue: "",
-        contact: "",
-        phone: "",
-        email: "",
-        totalPrice: 0}
+      weddingArray: [
+        {
+          eventDate: "",
+          numOfGuests: "",
+          venue: "",
+          contact: "",
+          phone: "",
+          email: "",
+          totalPrice: 0
+        }
       ],
       isContactValid: false,
       isEventDateValid: false,
@@ -78,14 +81,27 @@ class AddWedding extends Component {
     this.state.weddingArray.concat = this.state.contact;
     this.state.weddingArray.phone = this.state.phone;
     this.state.weddingArray.email = this.state.email;
-    this.state.weddingArray.totalPrice = 
+    this.state.weddingArray.totalPrice =
       this.state.pricePP * this.state.numOfGuests +
-      (this.state.isDJChecked ? 300: 0) +
-      (this.state.isFlowersChecked ? 200:0) +
-      (this.state.isBandChecked ? 200: 0);
+      (this.state.isDJChecked ? 300 : 0) +
+      (this.state.isFlowersChecked ? 200 : 0) +
+      (this.state.isBandChecked ? 200 : 0);
 
-      
-      console.log(this.state.weddingArray);
+    console.log(this.state.weddingArray);
+  }
+
+  async componentDidMount() {
+    try {
+      const API_URL =
+        "https://raw.githubusercontent.com/MincyS/CS385-Project/main/venueList.json";
+      const response = await fetch(API_URL);
+      const jsonResult = await response.json();
+      this.setState({ localVenueList: jsonResult.venueList });
+      this.setState({ isFetched: true });
+    } catch (error) {
+      this.setState({ isFetched: false });
+      this.setState({ errorMsg: error });
+    }
   }
 
   handleEventDate(event) {
@@ -129,7 +145,9 @@ class AddWedding extends Component {
     this.setState({ venue: e.target.value });
     this.setState({ isVenueValid: true });
 
-    this.setState({ pricePP: this.state.venueList[e.target.value].pricepp });
+    this.setState({
+      pricePP: this.state.localVenueList[e.target.value].pricepp
+    });
     this.validateForm();
   }
 
@@ -217,14 +235,12 @@ class AddWedding extends Component {
     });
   }
 
-  
-
   render() {
     return (
       <div>
         <p>
-        <img src={weddingPhoto} alt="logo" />
-      </p>
+          <img src={weddingPhoto} alt="logo" />
+        </p>
 
         <h2> Create a Wedding Event</h2>
         <form>
@@ -253,7 +269,7 @@ class AddWedding extends Component {
             <label>
               Venue (Capacity) &nbsp;
               <select onChange={(e) => this.handleVenueChange(e)}>
-                {this.state.venueList.map((v, index) => (
+                {this.state.localVenueList.map((v, index) => (
                   <option key={v.id} value={v.id}>
                     {v.venuename} - ({v.capacity})
                   </option>
@@ -329,9 +345,9 @@ class AddWedding extends Component {
                 {" "}
                 Total Price (€):{" "}
                 {this.state.pricePP * this.state.numOfGuests +
-                  (this.state.isDJChecked ? 300: 0) +
-                  (this.state.isFlowersChecked ? 200:0) +
-                  (this.state.isBandChecked ? 200: 0)}{" "}
+                  (this.state.isDJChecked ? 300 : 0) +
+                  (this.state.isFlowersChecked ? 200 : 0) +
+                  (this.state.isBandChecked ? 200 : 0)}{" "}
               </b>
             )}
             <br /> <br />
@@ -358,8 +374,6 @@ class AddWedding extends Component {
             >
               submit
             </button>
-
-
           </div>
         </form>
       </div>
