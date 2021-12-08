@@ -130,13 +130,11 @@ class Register extends Component {
     return (
       <div className="Register">
         <div class="frame4">
-          <p>
-            <h4>New Customer!</h4>
-            <br />
-            <br />
-            <button>Register Now!</button>
-            <br />
-            <br />
+           <p>
+          New Customer!!
+          <br/> Regester Now
+          <br />
+          <br />
             <form>
               <label for="name">Name:</label>
 
