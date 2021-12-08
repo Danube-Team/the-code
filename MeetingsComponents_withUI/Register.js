@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "react-inputs-validation/lib/react-inputs-validation.min.css";
 
-const re = new RegExp("^(?=.*)(?=.*[a-z])(?=.*[A-Z]).{8,32}$");
+
 
 class Register extends Component {
   constructor(props) {
@@ -77,7 +77,7 @@ class Register extends Component {
   // it takes the value that the user entered, using "event.target.value", and makes it the value for "password" variable using setState()
   validatePassword(password) {
     let localFormErrors = this.state.formErrors;
-
+    const re = new RegExp("^(?=.*)(?=.*[a-z])(?=.*[A-Z]).{8,32}$");
     if (re.test(password)) {
       localFormErrors.password = "";
       this.setState({ passwordValid: true });
