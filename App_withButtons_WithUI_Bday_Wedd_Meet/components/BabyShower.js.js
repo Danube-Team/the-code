@@ -127,10 +127,13 @@ class BabyShower extends Component {
           </form>
 
           {this.state.isSelected && (
-            <h4>
-              You have choosen: {this.state.selectedDate.toString()}
-              <br />
-            </h4>
+            <div class="feedback">
+              <b>You have choosen: </b>
+              <i>
+                {this.state.selectedDate.toString()}
+                <br />
+              </i>
+            </div>
           )}
           <hr />
 
@@ -149,10 +152,11 @@ class BabyShower extends Component {
           </form>
 
           {this.state.myChoice && (
-            <h4>
-              Your choice: {this.state.myChoice}
+            <div class="feedback">
+              <b>Your choice: </b>
+              <i>{this.state.myChoice}</i>
               <br />
-            </h4>
+            </div>
           )}
 
           <hr />
@@ -168,7 +172,13 @@ class BabyShower extends Component {
               ))}
             </select>
           </form>
-          {this.state.myChoice && <h4>Your choice: {this.state.myChoice1}</h4>}
+          {this.state.myChoice && (
+            <div class="feedback">
+              <b>Your choice: </b>
+              <i>{this.state.myChoice1}</i>
+              <br />
+            </div>
+          )}
         </div>
       </div>
     );
