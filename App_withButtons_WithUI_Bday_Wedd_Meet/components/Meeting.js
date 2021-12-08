@@ -212,7 +212,7 @@ class Meeting extends Component {
         <hr />
         <div class="frame6">
           <form>
-            <label>by:</label>
+            <label>By:</label>
             <input
               type="text"
               value={this.state.organiser}
@@ -365,53 +365,56 @@ class Meeting extends Component {
                 <br />
                 {this.state.organiser && (
                   <div class="feedback">
-                    <b> The organiser of the meeting is:</b>
-                    {this.state.organiser}
+                    <b> The organiser of the meeting is: </b>
+                    <i>{this.state.organiser}</i>
                     <br />
                     <br />
                   </div>
                 )}
                 {this.state.meetingTitle && (
                   <div class="feedback">
-                    The tilte of the meeting is: {this.state.meetingTitle}
+                    <b> The title of the meeting is: </b>{" "}
+                    <i> {this.state.meetingTitle}</i>
                     <br />
                     <br />
                   </div>
                 )}
                 {this.state.selectedStartDate && (
                   <div class="feedback">
-                    The meeting starting date is:{" "}
-                    {this.state.selectedStartDate.toString()}
+                    <b>The meeting starting date is: </b>{" "}
+                    <i>{this.state.selectedStartDate.toString()}</i>
                     <br />
                     <br />
                   </div>
                 )}
                 {this.state.selectedEndDate && (
                   <div class="feedback">
-                    The meeting Ending date is:{" "}
-                    {this.state.selectedEndDate.toString()}
+                    <b>The meeting ending date is: </b>{" "}
+                    <i>{this.state.selectedEndDate.toString()}</i>
                     <br />
                     <br />
                   </div>
                 )}
                 {this.state.myMeetingTypeChoice && (
                   <div class="feedback">
-                    The meeting type is: {this.state.myMeetingTypeChoice}
+                    <b>The meeting type is: </b>
+                    <i>{this.state.myMeetingTypeChoice}</i>
                     <br />
                     <br />
                   </div>
                 )}
                 {this.state.myVenueChoice && (
                   <div class="feedback">
-                    In the city of: {this.state.myVenueChoice}
+                    <b>In the city of: </b>
+                    <i>{this.state.myVenueChoice}</i>
                     <br />
                     <br />
                   </div>
                 )}
                 {this.state.myMeetingLocationChoice && (
                   <div class="feedback">
-                    The meeting will be held in:{" "}
-                    {this.state.myMeetingLocationChoice}
+                    <b>The meeting will be held in: </b>{" "}
+                    <i>{this.state.myMeetingLocationChoice}</i>
                     <br />
                     <br />
                   </div>
@@ -420,7 +423,7 @@ class Meeting extends Component {
             )}
             {this.state.meetingBasket.length > 0 && (
               <div class="feedback">
-                Added package
+                <b>Added package</b>
                 <ul>
                   {this.state.meetingBasket.map((m, i) => (
                     <li key={i}>{m.package}, </li>
@@ -445,4 +448,3 @@ class Meeting extends Component {
   }
 }
 export default Meeting;
-
