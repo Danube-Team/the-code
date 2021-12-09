@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "react-inputs-validation/lib/react-inputs-validation.min.css";
+
 
 const re = new RegExp("^(?=.*)(?=.*[a-z])(?=.*[A-Z]).{8,32}$");
 
