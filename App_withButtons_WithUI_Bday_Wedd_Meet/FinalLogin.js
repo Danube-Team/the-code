@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "react-inputs-validation/lib/react-inputs-validation.min.css";
+
 import "./styles.css";
 
 class Login extends Component {
