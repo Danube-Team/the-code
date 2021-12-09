@@ -73,20 +73,22 @@ class AddWedding extends Component {
   }
 
   submitButtonClick(event) {
-    let localweddingArray = this.state.weddingArray;
-
-    this.state.weddingArray.eventDate = this.state.eventDate;
-    this.state.weddingArray.numOfGuests = this.state.numOfGuests;
-    this.state.weddingArray.venue = this.state.venue;
-    this.state.weddingArray.concat = this.state.contact;
-    this.state.weddingArray.phone = this.state.phone;
-    this.state.weddingArray.email = this.state.email;
-    this.state.weddingArray.totalPrice =
+    let newArray = [
+      {eventdate : this.state.eventDate,
+      numOfGuests : this.state.numOfGuests,
+      venue : this.state.venue,
+      concat : this.state.contact,
+      phone : this.state.phone,
+      email : this.state.email,
+      totalPrice :
       this.state.pricePP * this.state.numOfGuests +
       (this.state.isDJChecked ? 300 : 0) +
       (this.state.isFlowersChecked ? 200 : 0) +
-      (this.state.isBandChecked ? 200 : 0);
+      (this.state.isBandChecked ? 200 : 0)
 
+
+    }];
+    this.state.weddingArray.push(newArray);
     console.log(this.state.weddingArray);
   }
 
@@ -146,7 +148,7 @@ class AddWedding extends Component {
     this.setState({ isVenueValid: true });
 
     this.setState({
-      pricePP: this.state.localVenueList[e.target.value].pricepp
+      pricePP: this.state.localVenueList[e.target.value-1].pricepp
     });
     this.validateForm();
   }
@@ -365,7 +367,8 @@ class AddWedding extends Component {
               {!this.state.isEmailValid && this.state.formErrors.email}
             </span>
           </div>
-          <div className="btn_container">
+		 </form>
+          <div className="frame4">
             <br />
             <button
               type="submit"
@@ -375,7 +378,6 @@ class AddWedding extends Component {
               submit
             </button>
           </div>
-        </form>
       </div>
     );
   }
