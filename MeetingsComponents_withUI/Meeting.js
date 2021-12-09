@@ -206,8 +206,11 @@ class Meeting extends Component {
   render() {
     return (
       <div className="Meeting">
+        <header>
+          <div class="header">Meeting Form</div>
+        </header>
+        <hr />
         <div class="frame6">
-          <h1>Meeting</h1>
           <form>
             <label>by:</label>
             <input
@@ -289,7 +292,7 @@ class Meeting extends Component {
             <br />
 
             <form>
-              <label>Venue:</label>
+              <label>City:</label>
               <select onChange={this.handleVenueList}>
                 <option selected value="" disabled="disabled">
                   choose
@@ -323,7 +326,7 @@ class Meeting extends Component {
                       .map((a, i) => (
                         <option key={i}>
                           {" "}
-                          {a.place} €{a.price} / day MaxNo.OfGuests{" "}
+                          {a.place} | costs €{a.price} per day | MaxNo.OfGuests{" "}
                           {a.maxNumberOfGuests}
                         </option>
                       ))}
@@ -332,18 +335,17 @@ class Meeting extends Component {
               )}
 
               {this.state.myMeetingLocationChoice && (
-                <div>
-                  <p>
-                    {" "}
-                    If you want to add any Choice of these please press "add"
-                  </p>
+                <div class="frame6">
+                  {" "}
+                  If you want to add any Choice of these please press "add"
                   <p>
                     {" "}
                     If you want to clear your choice please press "remove"{" "}
                   </p>
+                  <br />
                   {this.state.caterArray.map((c, i) => (
                     <li key={i}>
-                      {c.package} {c.price} per person{" "}
+                      {c.package} €{c.price} per person{" "}
                       <button
                         type="add"
                         onClick={() => this.addToMeetingBasket(c.id)}
@@ -355,77 +357,92 @@ class Meeting extends Component {
                 </div>
               )}
             </div>
-          </div>
 
-          {this.state.organiser && (
-            <div>
-              <hr />
-              Meeting Details:
-              <br />
-              <br />
-              {this.state.organiser && (
-                <div class="feedback">
-                  The organiser of the meeting is: {this.state.organiser}
-                  <br />
-                  <br />
-                </div>
-              )}
-              {this.state.meetingTitle && (
-                <div class="feedback">
-                  The tilte of the meeting is: {this.state.meetingTitle}
-                  <br />
-                  <br />
-                </div>
-              )}
-              {this.state.selectedStartDate && (
-                <div class="feedback">
-                  The meeting starting date is:{" "}
-                  {this.state.selectedStartDate.toString()}
-                  <br />
-                  <br />
-                </div>
-              )}
-              {this.state.selectedEndDate && (
-                <div class="feedback">
-                  The meeting Ending date is:{" "}
-                  {this.state.selectedEndDate.toString()}
-                  <br />
-                  <br />
-                </div>
-              )}
-              {this.state.myMeetingTypeChoice && (
-                <div class="feedback">
-                  The meeting type is: {this.state.myMeetingTypeChoice}
-                  <br />
-                  <br />
-                </div>
-              )}
-              {this.state.myVenueChoice && (
-                <div class="feedback">
-                  In the city of: {this.state.myVenueChoice}
-                  <br />
-                  <br />
-                </div>
-              )}
-              {this.state.myMeetingLocationChoice && (
-                <div class="feedback">
-                  The meeting will be held in:{" "}
-                  {this.state.myMeetingLocationChoice}
-                  <br />
-                  <br />
-                </div>
-              )}
-            </div>
-          )}
-          {this.state.meetingBasket.length > 0 && (
-            <ul>
-              Added package
-              {this.state.meetingBasket.map((m, i) => (
-                <li key={i}>{m.package}</li>
-              ))}
-            </ul>
-          )}
-          <br />
+            {this.state.organiser && (
+              <div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <hr />
+                <h2>Meeting Details</h2>
+                <br />
+                <br />
+                {this.state.organiser && (
+                  <div class="feedback">
+                    <b> The organiser of the meeting is: </b>
+                    {this.state.organiser}
+                    <br />
+                    <br />
+                  </div>
+                )}
+                {this.state.meetingTitle && (
+                  <div class="feedback">
+                    <b> The tilte of the meeting is: </b>{" "}
+                    {this.state.meetingTitle}
+                    <br />
+                    <br />
+                  </div>
+                )}
+                {this.state.selectedStartDate && (
+                  <div class="feedback">
+                    <b> The meeting starting date is: </b>
+                    {this.state.selectedStartDate.toString()}
+                    <br />
+                    <br />
+                  </div>
+                )}
+                {this.state.selectedEndDate && (
+                  <div class="feedback">
+                    <b> The meeting Ending date is: </b>
+                    {this.state.selectedEndDate.toString()}
+                    <br />
+                    <br />
+                  </div>
+                )}
+                {this.state.myMeetingTypeChoice && (
+                  <div class="feedback">
+                    <b> The meeting type is: </b>
+                    {this.state.myMeetingTypeChoice}
+                    <br />
+                    <br />
+                  </div>
+                )}
+                {this.state.myVenueChoice && (
+                  <div class="feedback">
+                    <b> In the city of: </b> {this.state.myVenueChoice}
+                    <br />
+                    <br />
+                  </div>
+                )}
+                {this.state.myMeetingLocationChoice && (
+                  <div class="feedback">
+                    <b>The meeting will be held in: </b>
+                    {this.state.myMeetingLocationChoice}
+                    <br />
+                    <br />
+                  </div>
+                )}
+              </div>
+            )}
+            {this.state.meetingBasket.length > 0 && (
+              <div class="feedback">
+                <h3> Added package(s)</h3>
+                <br />
+                <br />
+                <ul>
+                  {this.state.meetingBasket.map((m, i) => (
+                    <li key={i}>
+                      {m.package} (with additional cost €{m.price} per person)
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            <br />
+          </div>
           <div class="frame4">
             <button
               type="submit"
@@ -441,4 +458,3 @@ class Meeting extends Component {
   }
 }
 export default Meeting;
-
