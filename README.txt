@@ -7,7 +7,7 @@ Team Danube - Maynooth University, Maynooth Ireland.
 
 
 Dependencies
-Datepicker - Customised data picker with CSS
+Datepicker - Customised date picker with CSS
 Validator - to validate email input
 
 
