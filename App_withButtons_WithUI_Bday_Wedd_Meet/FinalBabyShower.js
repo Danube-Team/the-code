@@ -107,10 +107,11 @@ class BabyShower extends Component {
   }
 
   render() {
+    const title= this.props.title;
     return (
       <div className="Baby Shower">
         <header>
-          <div class="header">Baby Shower</div>
+          <div class="header">{title}</div>
         </header>
         <hr />
         <div class="frame6">
