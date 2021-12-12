@@ -40,10 +40,11 @@ class BirthdayParties extends Component {
   }
 
   render() {
+    const title= this.props.title;
     return (
       <div>
         <header>
-          <div class="header">Birthday Parties</div>
+          <div class="header">{title}</div>
         </header>
         <hr />
 
