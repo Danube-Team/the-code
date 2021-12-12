@@ -202,10 +202,11 @@ class Meeting extends Component {
   } // the function that will make the action after the user clicking on the submit button
 
   render() {
+    const title= this.props.title;
     return (
       <div className="Meeting">
         <header>
-          <div class="header">Meeting Form</div>
+          <div class="header">{title}</div>
         </header>
         <hr />
         <div class="frame6">
