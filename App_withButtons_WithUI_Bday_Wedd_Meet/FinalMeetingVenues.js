@@ -408,7 +408,7 @@ export const MeetingType = [
 export const location = [{ loc: "Dublin" }, { loc: "Cork" }];
 
 export const Cater = [
-  { id: 1, package: "coffee/ tea/ fresh juice", price: 5 },
-  { id: 2, package: "light snaks ", price: 10 },
-  { id: 3, package: "open buffet", price: 25 }
+  { id: 1, package: "beverages( coffee/ tea/ fresh juice)", price: 10 },
+  { id: 2, package: "beverages + light snaks buffet", price: 20 },
+  { id: 3, package: "Full Service Buffet", price: 30 }
 ];
