@@ -237,10 +237,11 @@ class AddWedding extends Component {
   }
 
   render() {
+    const title= this.props.title;
     return (
       <div>
         <header>
-          <div class="header">Wedding Event</div>
+          <div class="header">{title}</div>
         </header>
         <hr />
         <div class="frame4">
