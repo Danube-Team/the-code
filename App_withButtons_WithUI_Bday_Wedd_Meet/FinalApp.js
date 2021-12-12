@@ -6,7 +6,6 @@ import Meeting from "./components/Meeting";
 import BirthdayParties from "./components/BirthdayParties";
 import Wedding from "./components/AddWedding";
 import BabyShower from "./components/BabyShower";
-import "react-inputs-validation/lib/react-inputs-validation.min.css";
 import "./styles.css";
 
 class App extends Component {
@@ -14,12 +13,7 @@ class App extends Component {
     super(props);
     this.state = {
       choice: "None",
-      login: 0,
-      register: 0,
-      wedding: 0,
-      birthday: 0,
-      meeting: 0,
-      babyShower: 0
+     
       // All the variables that I need to change their values in my programe
     };
     this.buttonLoginaction = this.buttonLoginaction.bind(this);
@@ -30,50 +24,32 @@ class App extends Component {
     this.buttonMeetingaction = this.buttonMeetingaction.bind(this);
   } // to bind the functions with the input fields or with the dropdown list
   // the end of the constructor
-
+  
   buttonLoginaction() {
-    let actionVariable = this.state.login;
-    actionVariable = actionVariable + 10;
-    this.setState({ login: actionVariable });
-    this.setState({ choice: "login" });
-  } // this function handles the Login button by re setting the "choice" variable value to "login" which we will use it later and pass it to a render function
+    this.setState({ choice: "Login" });
+  } // this function handles the Login button by re setting the "choice" variable value to "Login" which we will use it later and pass it to a render function
   //which will open the Login component.
   buttonRegisteraction() {
-    let actionVariable = this.state.register;
-    actionVariable = actionVariable + 10;
-    this.setState({ register: actionVariable });
-    this.setState({ choice: "register" });
-  } // this function handles the Login button by re setting the "choice" variable value to "register" which we will use it later and pass it to a render function
+    this.setState({ choice: "Register" });
+  } // this function handles the Login button by re setting the "choice" variable value to "Register" which we will use it later and pass it to a render function
   //which will open the Register component.
 
   buttonWeddingaction() {
-    let actionVariable = this.state.wedding;
-    actionVariable = actionVariable + 10;
-    this.setState({ wedding: actionVariable });
-    this.setState({ choice: "wedding" });
-  } // this function handles the Login button by re setting the "choice" variable value to "wedding" which we will use it later and pass it to a render function
+    this.setState({ choice: "WEDDING EVENT" });
+  } // this function handles the Login button by re setting the "choice" variable value to "WEDDING EVENT" which we will use it later and pass it to a render function
   //which will open the Wedding component.
 
   buttonBirthdayaction() {
-    let actionVariable = this.state.birthday;
-    actionVariable = actionVariable + 10;
-    this.setState({ birthday: actionVariable });
-    this.setState({ choice: "birthday" });
-  } // this function handles the Login button by re setting the "choice" variable value to "birthday" which we will use it later and pass it to a render function
+    this.setState({ choice: "BIRTHDAY PARTIES" });
+  } // this function handles the Login button by re setting the "choice" variable value to "BIRTHDAY PARTIES" which we will use it later and pass it to a render function
   //which will open the Birthday component.
   buttonMeetingaction() {
-    let actionVariable = this.state.meeting;
-    actionVariable = actionVariable + 10;
-    this.setState({ meeting: actionVariable });
-    this.setState({ choice: "meeting" });
-  } // this function handles the Login button by re setting the "choice" variable value to "meeting" which we will use it later and pass it to a render function
+    this.setState({ choice: "MEETING FORM" });
+  } // this function handles the Login button by re setting the "choice" variable value to "MEETING FORM" which we will use it later and pass it to a render function
   //which will open the Meeting component.
   buttonBabyShoweraction() {
-    let actionVariable = this.state.babyShower;
-    actionVariable = actionVariable + 10;
-    this.setState({ babyShower: actionVariable });
-    this.setState({ choice: "babyShower" });
-  } // this function handles the Login button by re setting the "choice" variable value to "babyShower" which we will use it later and pass it to a render function
+    this.setState({ choice: "BABY SHOWER" });
+  } // this function handles the Login button by re setting the "choice" variable value to "BABY SHOWER" which we will use it later and pass it to a render function
   //which will open the BabyShower component.
 
   render() {
@@ -87,12 +63,13 @@ class App extends Component {
           From our initial discussions together, we will advise and guide you
           through taking the decision for the best party for your needs. You
           just need to turn up!
-          <br />
-          let's get started!
         </div>
         <hr />
         <div class="frame7">
-         
+          <h4>let's get started!</h4>
+          <br />
+          <br />
+
           <button class="weddingButton" onClick={this.buttonWeddingaction}>
             Wedding
           </button>
@@ -117,15 +94,15 @@ class App extends Component {
           <button onClick={this.buttonRegisteraction}> Register</button>
           <br />
         </div>
-        <input type="checkbox" />
+
         <br />
         <hr />
-        {this.state.choice === "login" && <Login />}
-        {this.state.choice === "register" && <Register />}
-        {this.state.choice === "meeting" && <Meeting />}
-        {this.state.choice === "birthday" && <BirthdayParties />}
-        {this.state.choice === "babyShower" && <BabyShower />}
-        {this.state.choice === "wedding" && <Wedding />}
+        {this.state.choice === "Login" && <Login title={this.state.choice}/>}
+        {this.state.choice === "Register" && <Register title={this.state.choice}/>}
+        {this.state.choice === "MEETING FORM" && <Meeting title={this.state.choice}/>}
+        {this.state.choice === "BIRTHDAY PARTIES" && <BirthdayParties title={this.state.choice}/>}
+        {this.state.choice === "BABY SHOWER" && <BabyShower title={this.state.choice}/>}
+        {this.state.choice === "WEDDING EVENT" && <Wedding title={this.state.choice}/>}
       </div>
     );
   }
