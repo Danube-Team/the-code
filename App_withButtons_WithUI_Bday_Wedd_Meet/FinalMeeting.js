@@ -26,20 +26,16 @@ class Meeting extends Component {
       formErrors: {
         organiser: "",
         meetingTitle: "",
-        startDate: "",
-        endDate: ""
+        startDate: ""
+        
       },
       organiserNameValid: false,
       meetingTitleValid: false,
       selectedStartDate: new Date(),
       isStartSelected: false,
-      selectedEndDate: new Date(),
-      isEndSelected: false,
       localVenue: localLocation,
       myVenueChoice: null,
       isVenueValid: false,
-      endDate: new Date(),
-      isendDate: false,
       meetingLocation: localMeetingLocation,
       myMeetingLocationChoice: null,
       isMeetingLocationValid: false,
@@ -49,18 +45,19 @@ class Meeting extends Component {
       caterArray: localCater,
       meetingBasket: [],
       chosenPackage: null,
-      formValid: false
+      formValid: false,
+      packageAdded: false
     };
     // All the variables that I need to change their values in my programe
 
     this.handleOrganiserBox = this.handleOrganiserBox.bind(this);
     this.handleMeetingTitleBox = this.handleMeetingTitleBox.bind(this);
     this.handleChosenStartDate = this.handleChosenStartDate.bind(this);
-    this.handleChosenEndDate = this.handleChosenEndDate.bind(this);
     this.handleVenueList = this.handleVenueList.bind(this);
     this.handleMeetingLocationList = this.handleMeetingLocationList.bind(this);
     this.handleMeetingTypeList = this.handleMeetingTypeList.bind(this);
     this.addToMeetingBasket = this.addToMeetingBasket.bind(this);
+    this.removePackage = this.removePackage.bind(this);
     this.submitButtonClick = this.submitButtonClick.bind(this);
     // to bind the functions with the input fields or with the dropdown list
   } // the end of the constructor
@@ -92,11 +89,12 @@ class Meeting extends Component {
   // it takes the value that the user entered, using "event.target.value", and makes it the value for "meetingTitle" variable using setState()
   // also has a role in validating the whole form
 
-  validateMeetingTitleBox(name) {
+  validateMeetingTitleBox(title) {
     let localFormErrors = this.state.formErrors;
-    if (name.length > 60) {
+    if (title.length > 60) {
       localFormErrors.meetingTitle =
         "This title is too long, Maximum letters allawed are 60";
+        //here "if" statment checks the length of the text that the user entered and accepts only the text if its length less than 60 charachters 
     } else {
       localFormErrors.meetingTitle = "";
       this.setState({ meetingTitleValid: true });
@@ -115,19 +113,7 @@ class Meeting extends Component {
     }
   } // this function allow the user to inesrt the starting datae of the meeting
   // and also makes sure that the date is in the future
-
-  handleChosenEndDate(theEndDate) {
-    let localFormErrors = this.state.formErrors;
-    if (theEndDate < this.state.selectedStartDate) {
-      localFormErrors.endDate =
-        "This Date is not valid, please chose date in the future";
-    } else {
-      localFormErrors.endDate = "";
-      this.setState({ isEndSelected: true });
-      this.setState({ selectedEndDate: theEndDate });
-    }
-  } // this function allow the user to inesrt the ending datae of the meeting
-  // and also makes sure that the date is in the future and  equal or greater than the starting date
+  
 
   handleVenueList(event) {
     this.setState({ myVenueChoice: event.target.value });
@@ -150,17 +136,7 @@ class Meeting extends Component {
   }
   // this function changes "myMeetingLocationChoise" variable with the value that the user chose from the dropdown list
   // also has a role in validating the whole form
-  validateForm() {
-    this.setState({
-      formValid:
-        this.state.organiserNameValid &&
-        // this.state.isMeetingLocationValid //&&
-        // this.state.isMeetingTypeValid &&
-        this.state.isVenueValid
-    });
-    // this function checks if these values are true then the "formValid" variable will be true as well
-    // if "formValid" is true, the submit butto will be active as the user filled all the required fields. Otherwise the submit button will remail desibeld
-  }
+ 
 
   sortMeetingLocationPrices(Aprice, Bprice) {
     let comparison = 0;
@@ -193,9 +169,31 @@ class Meeting extends Component {
   addToMeetingBasket(choiceID) {
     let foundObj = this.state.caterArray.filter(this.findChoiceByID(choiceID));
     this.setState({ meetingBasket: this.state.meetingBasket.concat(foundObj) });
+    this.setState({ packageAdded: true });
   } //this function uses filter function to get the only object that we want
   //and then uses concat function to add a copy of the object to a new array "meetingBasket"
 
+  removePackage(indexToRemove) {
+    if (this.state.meetingBasket.length > 0) {
+      let tempBasket = this.state.meetingBasket;
+      tempBasket.splice(indexToRemove, 1);
+      this.setState({ meetingBasket: tempBasket });
+      this.setState({ packageAdded: false });
+    }
+  }//this function job is to remove the package that the user chose if he cliked on "remove" button
+  // and re set "packageAdded" variable to false again which actives the "add" buttons again so the user can chose another package
+
+  validateForm() {
+    this.setState({
+      formValid:
+        this.state.organiserNameValid &&
+        // this.state.isMeetingLocationValid //&&
+        // this.state.isMeetingTypeValid &&
+        this.state.isVenueValid
+    });
+    // this function checks if these values are true then the "formValid" variable will be true as well
+    // if "formValid" is true, the submit butto will be active as the user filled all the required fields. Otherwise the submit button will remail desibeld
+  }
   submitButtonClick() {
     console.log(this.state.organiser);
     console.log(this.state.myVenueChoice);
@@ -242,7 +240,7 @@ class Meeting extends Component {
             <div>{this.state.formErrors.meetingTitle}</div>
           )}
           <form>
-            <label> Meeting starts:</label>
+            <label> Meeting date:</label>
             <DatePicker
               dateFormat="MMMM d, yyyy"
               closeOnScroll={true}
@@ -257,23 +255,8 @@ class Meeting extends Component {
               <br />
             </div>
           )}
-          <form>
-            <label> Meeting ends:</label>
-
-            <DatePicker
-              dateFormat="MMMM d, yyyy"
-              closeOnScroll={true}
-              selected={this.state.selectedEndDate}
-              onChange={this.handleChosenEndDate}
-            />
-          </form>
-          <br />
-          {this.state.formErrors.endDate && (
-            <div>
-              {this.state.formErrors.endDate}
-              <br />
-            </div>
-          )}
+          
+        
           <div>
             <form key="22">
               <label>Meeting Type:</label>
@@ -337,11 +320,11 @@ class Meeting extends Component {
               {this.state.myMeetingLocationChoice && (
                 <div class="frame6">
                   {" "}
-                  If you want to add any Choice of these please press "add"
-                  <p>
-                    {" "}
-                    If you want to clear your choice please press "remove"{" "}
-                  </p>
+                  If you would like to add one package of these please press
+                  "add"
+                  <br/>
+                  * please note you can add just <b>one</b> package
+                  <br />
                   <br />
                   {this.state.caterArray.map((c, i) => (
                     <li key={i}>
@@ -349,23 +332,32 @@ class Meeting extends Component {
                       <button
                         type="add"
                         onClick={() => this.addToMeetingBasket(c.id)}
+                        disabled={this.state.packageAdded}
                       >
                         add
                       </button>
+                      <br />
                     </li>
+                    
                   ))}
+                  <br/>
+                  <br/>
+                  <br/>
                 </div>
+                
               )}
+              
             </div>
 
             {this.state.organiser && (
-              <div>
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
+              <div id="big-margin">
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
                 <hr />
                 <h2>Meeting Details</h2>
                 <br />
@@ -389,15 +381,7 @@ class Meeting extends Component {
                 {this.state.selectedStartDate && (
                   <div class="feedback">
                     <b> The meeting starting date is: </b>
-                    {this.state.selectedStartDate.toString()}
-                    <br />
-                    <br />
-                  </div>
-                )}
-                {this.state.selectedEndDate && (
-                  <div class="feedback">
-                    <b> The meeting Ending date is: </b>
-                    {this.state.selectedEndDate.toString()}
+                    {this.state.selectedStartDate.toLocaleDateString()}
                     <br />
                     <br />
                   </div>
@@ -425,24 +409,34 @@ class Meeting extends Component {
                     <br />
                   </div>
                 )}
+                {this.state.meetingBasket.length > 0 && (
+                  <div class="feedback">
+                    <h3> Added package</h3>
+                    <br />
+                    <br />
+                    <ul>
+                      {this.state.meetingBasket.map((m, i) => (
+                        <li key={i}>
+                          <b>Your package choice is:</b>
+                          <br />
+                          {m.package} (with additional cost €{m.price} per
+                          person)
+                          <br />
+                          <br />
+                          If you want to clear your package choice please press
+                          "remove"
+                          <button onClick={this.removePackage}>remove</button>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             )}
-            {this.state.meetingBasket.length > 0 && (
-              <div class="feedback">
-                <h3> Added package(s)</h3>
-                <br />
-                <br />
-                <ul>
-                  {this.state.meetingBasket.map((m, i) => (
-                    <li key={i}>
-                      {m.package} (with additional cost €{m.price} per person)
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+
             <br />
           </div>
+
           <div class="frame4">
             <button
               type="submit"
