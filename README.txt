@@ -1,5 +1,9 @@
 About
-This App is to provide a mobile UI for app users to look for custom events. It includes birthdays, meetings, baby showers and wedding events. Each events have customisted features to accomodate the user personal needs with a "submit" button to send the detailed information on their email.
+This App is to provide a mobile UI for app users to look for custom events. It includes birthdays, meetings, baby showers and wedding events. Each events have customisted features to accomodate the user personal needs with the possibility to send their confirmed event information on their email.
+
+Main App option:
+Login button: user may access on their account to give a better app's usability. Login features: email and password.
+Register button: users are welcomed to registers themselves if they want to use the app in the future. Register features: name, email, password, phone number.
 
 Features in each event:
 Wedding event : date, guests, venue, contact name, phone, email, others (selection among flowers, DJ and band), special requirements;
