@@ -3,7 +3,7 @@ import validator from "validator";
 import weddingPhoto from "./images/wedding.png";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "./styles.css";
+import "../styles.css";
 
 function isNumeric(num) {
   return !isNaN(num);
@@ -239,8 +239,8 @@ class AddWedding extends Component {
     this.setState({ isBandChecked: !this.state.isBandChecked });
   }
 
-  handleCommentEvent(value) {
-    this.setState({ comments: value });
+  handleCommentEvent(event) {
+    this.setState({ comments: event.target.value });
   }
 
   // validate entire form
@@ -256,7 +256,7 @@ class AddWedding extends Component {
   }
 
   render() {
-    const title= this.props.title;
+    const title = this.props.title;
 
     return (
       <div>
@@ -372,11 +372,10 @@ class AddWedding extends Component {
                 </label>
               </div>
             </form>
-            <br /> <br />
+            <br />
             <form>
               <label>
-                {" "}
-                Special Requirements &nbsp;
+                Special Requirements
                 <textarea
                   placeholder="Special notes if any"
                   value={this.state.comments}
@@ -408,15 +407,23 @@ class AddWedding extends Component {
                 textAlign: "left"
               }}
             >
-              {!this.state.isEventDateValid && this.state.formErrors.eventDate}
-              {!this.state.isNumOfGuestsValid &&
-                this.state.formErrors.numOfGuests}
-              {!this.state.isContactValid && this.state.formErrors.contact}
-              {!this.state.isPhoneValid && this.state.formErrors.phone}
-              {!this.state.isEmailValid && this.state.formErrors.email}
+              {!this.state.isEventDateValid && (
+                <div class="error">{this.state.formErrors.eventDate}</div>
+              )}
+
+              {!this.state.isNumOfGuestsValid && (
+                <div class="error">{this.state.formErrors.numOfGuests}</div>
+              )}
+              {!this.state.isContactValid && (
+                <div class="error">{this.state.formErrors.contact}</div>
+              )}
+              {!this.state.isPhoneValid && (
+                <div class="error">{this.state.formErrors.phone}</div>
+              )}
+              {!this.state.isEmailValid && (
+                <div class="error">{this.state.formErrors.email}</div>
+              )}
             </div>
-            <br />
-            <br />
           </div>
           <div className="frame4">
             <br />
