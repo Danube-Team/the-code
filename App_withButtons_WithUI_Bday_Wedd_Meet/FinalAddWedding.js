@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import validator from "validator";
-import weddingPhoto from "./wedding.png";
+import weddingPhoto from "./images/wedding.png";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./styles.css";
