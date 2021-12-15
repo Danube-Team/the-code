@@ -9,7 +9,7 @@ Features in each event:
 Wedding event : date, guests, venue, contact name, phone, email, others (selection among flowers, DJ and band), special requirements;
 Birthday event: images view of possible birthday selections. Packages option are divided into kids packages, packages by location and packages bby budget range;
 Baby shower event: date, mother's name, baby gender's selection, theme, venue, email
-Meeting event: organiser name, meeting title, start of meeting, end of meeting, meeting type, city, location, addition refreshments selections (drinks, light snacks and open buffet)
+Meeting event: organiser name, meeting title, date of meeting, meeting type, city, location, addition refreshments selections (beverages, beverages + snak buffet and full service buffet)
 
 
 Developers/Contributors
