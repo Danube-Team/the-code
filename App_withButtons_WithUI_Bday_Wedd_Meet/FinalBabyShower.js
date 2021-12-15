@@ -223,6 +223,7 @@ class BabyShower extends Component {
   //a frame for the date, mother's name, gender selection, theme and venue,
   //after that all options has been selected, the user will be prompt to insert a valid email and press a submit button
   render() {
+    const title = this.props.title;
     return (
       <div className="Baby Shower">
         <header>
