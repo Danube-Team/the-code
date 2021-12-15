@@ -84,14 +84,14 @@ export const MeetingVenue = [
     place: "Abbey Theatre",
     price: 600,
     city: "Dublin",
-    type: "Confrence"
+    type: "Conference"
   },
   {
     id: 12,
     place: "Holiday Inn Express Hotel",
     price: 400,
     city: "Dublin",
-    type: "Confrence",
+    type: "Conference",
     maxNumberOfGuests: 150
   },
   {
@@ -99,7 +99,7 @@ export const MeetingVenue = [
     place: "Irish Aviation Authority ",
     price: 570,
     city: "Dublin",
-    type: "Confrence",
+    type: "Conference",
     maxNumberOfGuests: 350
   },
   {
@@ -107,14 +107,14 @@ export const MeetingVenue = [
     place: "Cleaver East Suites ",
     price: 530,
     city: "Dublin",
-    type: "Confrence"
+    type: "Conference"
   },
   {
     id: 15,
     place: "Trinity City Hotel",
     price: 570,
     city: "Dublin",
-    type: "Confrence",
+    type: "Conference",
     maxNumberOfGuests: 300
   },
   {
@@ -122,14 +122,14 @@ export const MeetingVenue = [
     place: "Huckletree D2 ",
     price: 479,
     city: "Dublin",
-    type: "Confrence"
+    type: "Conference"
   },
   {
     id: 17,
     place: "EPIC The Irish Emigration Museum ",
     price: 587,
     city: "Dublin",
-    type: "Confrence",
+    type: "Conference",
     maxNumberOfGuests: 340
   },
   {
@@ -137,7 +137,7 @@ export const MeetingVenue = [
     place: "Brooks Hotel ",
     price: 645,
     city: "Dublin",
-    type: "Confrence",
+    type: "Conference",
     maxNumberOfGuests: 400
   },
   {
@@ -145,7 +145,7 @@ export const MeetingVenue = [
     place: "Royal College of Physicians of Irelan ",
     price: 710,
     city: "Dublin",
-    type: "Confrence",
+    type: "Conference",
     maxNumberOfGuests: 450
   },
   {
@@ -153,7 +153,7 @@ export const MeetingVenue = [
     place: "Dublin Chamber of Commerce ",
     price: 430,
     city: "Dublin",
-    type: "Confrence",
+    type: "Conference",
     maxNumberOfGuests: 280
   },
 
@@ -341,7 +341,7 @@ export const MeetingVenue = [
     place: "Clayton Hotel Cork City  ",
     price: 490,
     city: "Cork",
-    type: "Confrence",
+    type: "Conference",
     maxNumberOfGuests: 200
   },
   {
@@ -349,7 +349,7 @@ export const MeetingVenue = [
     place: "Hayfield Manor Hotel  ",
     price: 582,
     city: "Cork",
-    type: "Confrence",
+    type: "Conference",
     maxNumberOfGuests: 150
   },
   {
@@ -357,7 +357,7 @@ export const MeetingVenue = [
     place: "Gresham Metropole   ",
     price: 746,
     city: "Cork",
-    type: "Confrence",
+    type: "Conference",
     maxNumberOfGuests: 350
   },
   {
@@ -365,14 +365,14 @@ export const MeetingVenue = [
     place: "The Address Cork   ",
     price: 660,
     city: "Cork",
-    type: "Confrence"
+    type: "Conference"
   },
   {
     id: 47,
     place: "Brook Catering - Cork City Goal   ",
     price: 425,
     city: "Cork",
-    type: "Confrence",
+    type: "Conference",
     maxNumberOfGuests: 270
   },
   {
@@ -380,14 +380,14 @@ export const MeetingVenue = [
     place: "Kingsley Hotel  ",
     price: 510,
     city: "Cork",
-    type: "Confrence"
+    type: "Conference"
   },
   {
     id: 49,
     place: "Clayton Hotel Silver Springs ",
     price: 890,
     city: "Cork",
-    type: "Confrence",
+    type: "Conference",
     maxNumberOfGuests: 500
   },
   {
@@ -395,14 +395,14 @@ export const MeetingVenue = [
     place: "Radisson BLU Hotel & Spa, Cork",
     price: 756,
     city: "Cork",
-    type: "Confrence",
+    type: "Conference",
     maxNumberOfGuests: 450
   }
 ];
 
 export const MeetingType = [
   { type: "Bussiness Meeting" },
-  { type: "Confrence" },
+  { type: "Conference" },
   { type: "Family/Friendly Meeting" }
 ];
 export const location = [{ loc: "Dublin" }, { loc: "Cork" }];
