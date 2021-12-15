@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-//import { venueList } fom "./venueList.js";
 import validator from "validator";
-import weddingPhoto from "./images/wedding.png";
-import "../styles.css";
-
-//const localVenueList = venueList;
+import weddingPhoto from "./wedding.png";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import "./styles.css";
 
 function isNumeric(num) {
   return !isNaN(num);
@@ -14,12 +13,10 @@ class AddWedding extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: 0,
+      // initialize all variables for states
       eventDate: new Date(),
       numOfGuests: 0,
       localVenueList: [],
-      isFetched: false,
-      errorMsg: null,
       venue: "",
       contact: "",
       phone: "",
@@ -30,7 +27,11 @@ class AddWedding extends Component {
       isFlowersChecked: false,
       pricePP: 0,
 
-      //error checking
+      // used for fetching json file on github
+      isFetched: false,
+      errorMsg: null,
+
+      // object store error messages
       formErrors: {
         eventDate: "",
         numOfGuests: "",
@@ -39,9 +40,18 @@ class AddWedding extends Component {
         phone: "",
         email: ""
       },
-
+      // flags validating each input
+      isContactValid: false,
+      isEventDateValid: false,
+      isVenueValid: false,
+      isPhoneValid: false,
+      isNumOfGuestsValid: false,
+      isEmailValid: false,
+      isformValid: false,
+      //array to store user inputs
       weddingArray: [
         {
+          id: 1,
           eventDate: "",
           numOfGuests: "",
           venue: "",
@@ -50,15 +60,10 @@ class AddWedding extends Component {
           email: "",
           totalPrice: 0
         }
-      ],
-      isContactValid: false,
-      isEventDateValid: false,
-      isVenueValid: false,
-      isPhoneValid: false,
-      isNumOfGuestsValid: false,
-      isEmailValid: false,
-      isformValid: false
+      ]
     };
+
+    // bind for event handlers
     this.submitButtonClick = this.submitButtonClick.bind(this);
     this.handleEventDate = this.handleEventDate.bind(this);
     this.handlenumOfGuests = this.handlenumOfGuests.bind(this);
@@ -73,24 +78,32 @@ class AddWedding extends Component {
     this.handleBandCheckbox = this.handleBandCheckbox.bind(this);
   }
 
+  // store input to an array - refresh array every time submit is clicked
   submitButtonClick(event) {
-    let localweddingArray = this.state.weddingArray;
+    let newArray = [
+      {
+        id: 1,
+        eventDate: this.state.eventDate,
+        numOfGuests: this.state.numOfGuests,
+        venue: this.state.venue,
+        contact: this.state.contact,
+        phone: this.state.phone,
+        email: this.state.email,
+        //calculate and store total price for selections
+        totalPrice:
+          this.state.pricePP * this.state.numOfGuests +
+          (this.state.isDJChecked ? 300 : 0) +
+          (this.state.isFlowersChecked ? 200 : 0) +
+          (this.state.isBandChecked ? 200 : 0)
+      }
+    ];
 
-    this.state.weddingArray.eventDate = this.state.eventDate;
-    this.state.weddingArray.numOfGuests = this.state.numOfGuests;
-    this.state.weddingArray.venue = this.state.venue;
-    this.state.weddingArray.concat = this.state.contact;
-    this.state.weddingArray.phone = this.state.phone;
-    this.state.weddingArray.email = this.state.email;
-    this.state.weddingArray.totalPrice =
-      this.state.pricePP * this.state.numOfGuests +
-      (this.state.isDJChecked ? 300 : 0) +
-      (this.state.isFlowersChecked ? 200 : 0) +
-      (this.state.isBandChecked ? 200 : 0);
-
-    console.log(this.state.weddingArray);
+    this.state.weddingArray.splice(0, 1); // remove existing data in the array
+    this.state.weddingArray.push(newArray); // push new details to the array
+    console.log(this.state.weddingArray); // print contents of the array to console
   }
 
+  // fetch venue details from github where json file is stored
   async componentDidMount() {
     try {
       const API_URL =
@@ -105,23 +118,24 @@ class AddWedding extends Component {
     }
   }
 
-  handleEventDate(event) {
-    this.setState({ eventDate: event.target.value });
-    this.validateEventDate(event.target.value);
+  // store and validate user input
+  handleEventDate(eventdt) {
+    this.setState({ eventDate: eventdt });
+    this.validateEventDate(eventdt);
   }
 
   validateEventDate(eventDate) {
     let localFormErrors = this.state.formErrors;
 
-    if (eventDate < new Date()) {
-      localFormErrors.eventDate = "Event date cannot be less than today";
+    if (!(eventDate > new Date())) {
+      localFormErrors.eventDate = "Event date should be greater than today";
       this.setState({ isEventDateValid: false });
     } else {
       localFormErrors.eventDate = "";
       this.setState({ isEventDateValid: true });
     }
     this.setState({ formErrors: localFormErrors });
-    this.validateForm();
+    this.validateForm(); // validate form
   }
 
   handlenumOfGuests(event) {
@@ -143,23 +157,27 @@ class AddWedding extends Component {
   }
 
   handleVenueChange(e) {
-    this.setState({ venue: e.target.value });
+    // store selected venue name
+    this.setState({
+      venue: this.state.localVenueList[e.target.value - 1].venuename
+    });
     this.setState({ isVenueValid: true });
 
     this.setState({
-      pricePP: this.state.localVenueList[e.target.value].pricepp
+      pricePP: this.state.localVenueList[e.target.value - 1].pricepp
     });
     this.validateForm();
   }
 
   handleContactChange(event) {
     this.setState({ contact: event.target.value });
-    this.validateConcat(event.target.value);
+    this.validateContact(event.target.value);
   }
 
-  validateConcat(contact) {
+  validateContact(contact) {
     let localFormErrors = this.state.formErrors;
     if (contact.length < 4) {
+      // check if minimum 4 characters are input by user
       localFormErrors.contact = "Contact name is too short or is invalid";
       this.setState({ isContactValid: false });
     } else {
@@ -178,6 +196,7 @@ class AddWedding extends Component {
   validatePhone(phone) {
     let localFormErrors = this.state.formErrors;
     console.log(isNumeric(phone));
+    // check for length and numeric only values for user input
     if (phone.length < 8 || !isNumeric(phone)) {
       localFormErrors.phone = "Phone is too short or is invalid";
       this.setState({ isPhoneValid: false });
@@ -196,7 +215,7 @@ class AddWedding extends Component {
 
   validateEmail(email) {
     let localFormErrors = this.state.formErrors;
-
+    // used external dependency for validating email input
     if (!validator.isEmail(email)) {
       localFormErrors.email = "Email is invalid";
       this.setState({ isEmailValid: false });
@@ -224,6 +243,7 @@ class AddWedding extends Component {
     this.setState({ comments: value });
   }
 
+  // validate entire form
   validateForm() {
     this.setState({
       isformValid:
@@ -231,13 +251,13 @@ class AddWedding extends Component {
         this.state.isEventDateValid &&
         this.state.isNumOfGuestsValid &&
         this.state.isPhoneValid &&
-        this.state.isVenueValid &&
         this.state.isEmailValid
     });
   }
 
   render() {
     const title= this.props.title;
+
     return (
       <div>
         <header>
@@ -252,10 +272,11 @@ class AddWedding extends Component {
           <div className="input_container">
             <form>
               <label>Event Date</label>
-              <input
-                type="date"
-                value={this.state.eventDate}
-                onChange={(e) => this.handleEventDate(e)}
+              <DatePicker
+                dateFormat="MMMM d, yyyy"
+                closeOnScroll={true}
+                selected={this.state.eventDate}
+                onChange={this.handleEventDate}
               />
             </form>
             <br />
@@ -308,7 +329,7 @@ class AddWedding extends Component {
                 />
               </label>
             </form>
-            &nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp;
             <form>
               <label>
                 Email &nbsp;
@@ -321,28 +342,34 @@ class AddWedding extends Component {
               </label>
             </form>
             <br />
-            <br />
             <form>
-              <div class="frame6">
-                Others
-                <input
-                  type="checkbox"
-                  onChange={(e) => this.handleFlowersCheckbox(e)}
-                  defaultChecked={this.state.isFlowersChecked}
-                />
-                Flowers
-                <input
-                  type="checkbox"
-                  onChange={(e) => this.handleDJCheckbox(e)}
-                  defaultChecked={this.state.isDJChecked}
-                />
-                DJ
-                <input
-                  type="checkbox"
-                  onChange={(e) => this.handleBandCheckbox(e)}
-                  defaultChecked={this.state.isBandChecked}
-                />
-                Band
+              <div class="frame4">
+                <b>Others</b>
+                <label>
+                  <input
+                    type="checkbox"
+                    onChange={(e) => this.handleFlowersCheckbox(e)}
+                    defaultChecked={this.state.isFlowersChecked}
+                  />
+                  Flowers
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    value="DJ"
+                    onChange={(e) => this.handleDJCheckbox(e)}
+                    defaultChecked={this.state.isDJChecked}
+                  />
+                  DJ
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    onChange={(e) => this.handleBandCheckbox(e)}
+                    defaultChecked={this.state.isBandChecked}
+                  />
+                  Band
+                </label>
               </div>
             </form>
             <br /> <br />
@@ -358,6 +385,9 @@ class AddWedding extends Component {
               </label>
             </form>
             <br /> <br />
+            {/* Conditional rendering of total price 
+                once the venue is selected pricepp is set
+            */}
             {this.state.pricePP !== 0 && (
               <b>
                 {" "}
@@ -368,11 +398,14 @@ class AddWedding extends Component {
                   (this.state.isBandChecked ? 200 : 0)}{" "}
               </b>
             )}
-            <br /> <br />
-            <span
+            {/* inline style for displaying error messages 
+                 for invalid input when validation fails
+            */}
+            <div
               style={{
                 fontWeight: "bold",
-                color: "red"
+                color: "red",
+                textAlign: "left"
               }}
             >
               {!this.state.isEventDateValid && this.state.formErrors.eventDate}
@@ -381,20 +414,21 @@ class AddWedding extends Component {
               {!this.state.isContactValid && this.state.formErrors.contact}
               {!this.state.isPhoneValid && this.state.formErrors.phone}
               {!this.state.isEmailValid && this.state.formErrors.email}
-            </span>
-          </div>
-          <form>
-            <div className="btn_container">
-              <br />
-              <button
-                type="submit"
-                disabled={!this.state.isformValid}
-                onClick={this.submitButtonClick}
-              >
-                submit
-              </button>
             </div>
-          </form>
+            <br />
+            <br />
+          </div>
+          <div className="frame4">
+            <br />
+            <button
+              type="submit"
+              disabled={!this.state.isformValid}
+              onClick={this.submitButtonClick}
+            >
+              Submit
+            </button>
+          </div>
+          <br />
         </div>
       </div>
     );
