@@ -227,7 +227,7 @@ class BabyShower extends Component {
     return (
       <div className="Baby Shower">
         <header>
-          <div class="header">Baby Shower</div>
+          <div class="header">{title}</div>
         </header>
         <hr />
         <div class="frame1">
