@@ -102,6 +102,7 @@ class App extends Component {
         {this.state.choice === "BIRTHDAY PARTIES" && <BirthdayParties title={this.state.choice}/>}
         {this.state.choice === "BABY SHOWER" && <BabyShower title={this.state.choice}/>}
         {this.state.choice === "WEDDING EVENT" && <Wedding title={this.state.choice}/>}
+        ©Team Danube, Maynooth University
       </div>
     );
   }
