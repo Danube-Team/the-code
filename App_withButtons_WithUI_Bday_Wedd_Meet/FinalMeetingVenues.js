@@ -4,7 +4,7 @@ export const MeetingVenue = [
     place: "The tcube Dublin City Centre Estate",
     price: 200,
     city: "Dublin",
-    type: "Bussiness Meeting",
+    type: "Business Meeting",
     maxNumberOfGuests: 35
   },
   {
@@ -12,7 +12,7 @@ export const MeetingVenue = [
     place: "Jurys Inn Parnell Street",
     price: 200,
     city: "Dublin",
-    type: "Bussiness Meeting",
+    type: "Business Meeting",
     maxNumberOfGuests: 47
   },
   {
@@ -20,7 +20,7 @@ export const MeetingVenue = [
     place: "Westin Dublin Hotel",
     price: 350,
     city: "Dublin",
-    type: "Bussiness Meeting",
+    type: "Business Meeting",
     maxNumberOfGuests: 70
   },
   {
@@ -28,14 +28,14 @@ export const MeetingVenue = [
     place: "The Academy Plaza Hotel",
     price: 271,
     city: "Dublin",
-    type: "Bussiness Meeting",
+    type: "Business Meeting",
     maxNumberOfGuests: 30
   },
   {
     id: 5,
     place: "Westbury Hotel ",
     price: 386,
-    type: "Bussiness Meeting",
+    type: "Business Meeting",
     maxNumberOfGuests: 45
   },
   {
@@ -43,7 +43,7 @@ export const MeetingVenue = [
     place: "Hilton Garden Inn Dublin Custom House",
     price: 422,
     city: "Dublin",
-    type: "Bussiness Meeting",
+    type: "Business Meeting",
     maxNumberOfGuests: 100
   },
   {
@@ -51,7 +51,7 @@ export const MeetingVenue = [
     place: "The Grafton Suite ",
     price: 271,
     city: "Dublin",
-    type: "Bussiness Meeting",
+    type: "Business Meeting",
     maxNumberOfGuests: 20
   },
   {
@@ -67,7 +67,7 @@ export const MeetingVenue = [
     place: "Royal College of Physicians of Irelan ",
     price: 459,
     city: "Dublin",
-    type: "Bussiness Meeting",
+    type: "Business Meeting",
     maxNumberOfGuests: 100
   },
   {
@@ -75,7 +75,7 @@ export const MeetingVenue = [
     place: "Dublin Chamber of Commerce  ",
     price: 328,
     city: "Dublin",
-    type: "Bussiness Meeting",
+    type: "Business Meeting",
     maxNumberOfGuests: 50
   },
 
@@ -219,7 +219,7 @@ export const MeetingVenue = [
     place: "Jurys Inn Cork ",
     price: 237,
     city: "Cork",
-    type: "Bussiness Meeting",
+    type: "Business Meeting",
     maxNumberOfGuests: 100
   },
   {
@@ -227,7 +227,7 @@ export const MeetingVenue = [
     place: "Culture Co-Working ",
     price: 200,
     city: "Cork",
-    type: "Bussiness Meeting",
+    type: "Business Meeting",
     maxNumberOfGuests: 90
   },
   {
@@ -235,7 +235,7 @@ export const MeetingVenue = [
     place: "Republic Of Work",
     price: 350,
     city: "Cork",
-    type: "Bussiness Meeting",
+    type: "Business Meeting",
     maxNumberOfGuests: 100
   },
   {
@@ -243,7 +243,7 @@ export const MeetingVenue = [
     place: "Maldron Hotel South Mall Cork ",
     price: 271,
     city: "Cork",
-    type: "Bussiness Meeting",
+    type: "Business Meeting",
     maxNumberOfGuests: 150
   },
 
@@ -252,7 +252,7 @@ export const MeetingVenue = [
     place: "Clayton Hotel Cork City",
     price: 422,
     city: "Cork",
-    type: "Bussiness Meeting",
+    type: "Business Meeting",
     maxNumberOfGuests: 150
   },
   {
@@ -260,7 +260,7 @@ export const MeetingVenue = [
     place: "Hayfield Manor Hotel ",
     price: 271,
     city: "Cork",
-    type: "Bussiness Meeting",
+    type: "Business Meeting",
     maxNumberOfGuests: 70
   },
   {
@@ -268,7 +268,7 @@ export const MeetingVenue = [
     place: "Maryborough House Hotel  ",
     price: 320,
     city: "Cork",
-    type: "Bussiness Meeting",
+    type: "Business Meeting",
     maxNumberOfGuests: 106
   },
   {
@@ -276,7 +276,7 @@ export const MeetingVenue = [
     place: "Cork Airport Hotel  ",
     price: 200,
     city: "Cork",
-    type: "Bussiness Meeting",
+    type: "Business Meeting",
     maxNumberOfGuests: 50
   },
   {
@@ -284,7 +284,7 @@ export const MeetingVenue = [
     place: "Fota Island Resort   ",
     price: 547,
     city: "Cork",
-    type: "Bussiness Meeting",
+    type: "Business Meeting",
     maxNumberOfGuests: 200
   },
 
@@ -401,7 +401,7 @@ export const MeetingVenue = [
 ];
 
 export const MeetingType = [
-  { type: "Bussiness Meeting" },
+  { type: "Business Meeting" },
   { type: "Conference" },
   { type: "Family/Friendly Meeting" }
 ];
