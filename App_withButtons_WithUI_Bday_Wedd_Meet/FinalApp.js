@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-//import DateTimePicker from "react-datetime-picker";
 import Login from "./Login";
 import Register from "./Register";
 import Meeting from "./components/Meeting";
